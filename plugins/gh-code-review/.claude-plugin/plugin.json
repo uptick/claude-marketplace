@@ -1,0 +1,9 @@
+{
+"name": "gh-code-review",
+"description": "A plugin for automating code review for pull requests. Typically called from within a GitHub Actions workflow.",
+"version": "1.0.0",
+"author": {
+    "name": "William Chu",
+    "email": "william.chu@uptickhq.com"
+  }
+}
