@@ -1,0 +1,44 @@
+# Example: Docker build with Tickforge deployment
+#
+# This workflow:
+# 1. Runs CI tests with uv and mise
+# 2. Builds multi-platform Docker image
+# 3. Pushes to ECR
+# 4. Triggers Tickforge deployment via bump-app
+#
+# Prerequisites:
+# - AWS OIDC configured for the repository
+# - ECR repository created
+# - Tickforge app configured
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  ci:
+    uses: uptick/actions/.github/workflows/ci.yaml@main  # ratchet:exclude
+    with:
+      python: true
+      python-version: "3.12"
+      uv: true
+      mise: true
+      aws: true
+      aws-region: ap-southeast-2
+      # Build and push Docker image
+      docker-enabled: true
+      docker-repository: 610829907584.dkr.ecr.ap-southeast-2.amazonaws.com/my-app
+      docker-image-platforms: "linux/amd64,linux/arm64"
+      # Trigger Tickforge deployment after successful build
+      bump-app: my-app
+      command: "mise run ci"
+    secrets: inherit
+
+  claude-review:
+    if: github.event_name == 'pull_request'
+    uses: uptick/actions/.github/workflows/claude_review.yaml@main  # ratchet:exclude
+    secrets:
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}

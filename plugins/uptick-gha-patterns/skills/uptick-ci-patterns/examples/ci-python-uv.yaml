@@ -1,0 +1,35 @@
+# Example: Python project with uv and mise
+#
+# This workflow runs CI for a Python project using:
+# - uv for dependency management
+# - mise for task running
+# - Uptick's reusable CI workflow
+#
+# Prerequisites:
+# - mise.toml with ci task defined
+# - uv.lock for dependency locking
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  ci:
+    uses: uptick/actions/.github/workflows/ci.yaml@main  # ratchet:exclude
+    with:
+      python: true
+      python-version: "3.12"
+      uv: true
+      mise: true
+      command: "mise run ci"
+    secrets: inherit
+
+  # Optional: Add Claude PR review
+  claude-review:
+    if: github.event_name == 'pull_request'
+    uses: uptick/actions/.github/workflows/claude_review.yaml@main  # ratchet:exclude
+    secrets:
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
