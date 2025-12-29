@@ -1,0 +1,12 @@
+name: Claude Mention
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+jobs:
+  mention:
+    uses: uptick/actions/.github/workflows/claude_mention.yaml@main  # ratchet:exclude
+    secrets:
+      CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}

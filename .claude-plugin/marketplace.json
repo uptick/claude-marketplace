@@ -1,11 +1,11 @@
 {
     "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-    "name": "claude-code-plugins",
+    "name": "uptick-claude-code-plugins",
     "version": "1.0.0",
-    "description": "Bundled plugins for Claude Code including Agent SDK development tools, PR review toolkit, and commit workflows",
+    "description": "",
     "owner": {
-      "name": "Anthropic",
-      "email": "support@anthropic.com"
+      "name": "Uptick",
+      "email": "devops@uptickhq.com"
     },
     "plugins": [
       {
@@ -17,6 +17,17 @@
           "email": "william.chu@uptickhq.com"
         },
         "source": "./plugins/gh-code-review",
+        "category": "productivity"
+      },
+      {
+        "name": "uptick-gha-patterns",
+        "description": "GitHub Actions best practices following Uptick's security-first patterns, including reusable workflows, ratchet pinning, and CI audit tooling",
+        "version": "0.1.0",
+        "author": {
+          "name": "Uptick",
+          "url": "https://github.com/uptick"
+        },
+        "source": "./plugins/uptick-gha-patterns",
         "category": "productivity"
       }
     ]

@@ -1,0 +1,17 @@
+{
+  "name": "uptick-gha-patterns",
+  "version": "0.1.0",
+  "description": "Best practices for GitHub Actions following Uptick patterns, including reusable workflows and action pinning with Ratchet",
+  "author": {
+    "name": "Uptick",
+    "url": "https://github.com/uptick"
+  },
+  "repository": "https://github.com/uptick/claude-marketplace",
+  "keywords": [
+    "github-actions",
+    "ci-cd",
+    "ratchet",
+    "security",
+    "best-practices"
+  ]
+}
